@@ -15,12 +15,13 @@
 				"ms-vscode.cpptools",
 				"ms-vscode.cmake-tools",
 				"ms-python.python",
-				"xaver.clang-format"
+				"ms-python.black-formatter"
 			],
 			"settings": {
 				"C_Cpp.intelliSenseEngine": "disabled",
 				"cmake.configureArgs": [
-					"-DADD_FORMATTARGET=1"
+					"-DADD_FORMATTARGET=1",
+					"-DADD_PYTHONFORMATTING=1" 
 				],
 				"python.pythonPath": "/dune/dune-common/build-cmake/dune-env/bin/python",
 				"python.defaultInterpreterPath": "/dune/dune-common/build-cmake/dune-env/bin/python",
@@ -33,10 +34,7 @@
 				"clangd.path": "/usr/bin/clangd-18",
 				"cmake.automaticReconfigure": false,
 				"cmake.configureOnEdit": false,
-				"clang-format.executable": "/usr/bin/clang-format-18",
-				"[cpp]": {
-					"editor.defaultFormatter": "xaver.clang-format"
-				}
+				"clang-format.executable": "/usr/bin/clang-format-18"
 			}
 		}
 	}

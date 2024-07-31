@@ -24,26 +24,13 @@ wsl --set-default-version 2 #(Is not needed for Windows 11)
 - This should install WSL (Windows Subsystem for Linux)
 - Reboot if requested
 - Download and install Docker for Windows. During the installation, select the option "Install required Windows components for WSL 2"
-- Install Debian from the [WindowsAppStore](https://apps.microsoft.com/detail/9msvkqc78pk6?hl=de-de&gl=DE) 
-- Open the Debian App, this should open a shell, and give yourself a username and a password (doesn't have to be sophisticated). Close Debian App.
-- Again open the Windows Powershell and type 
-```shell
-wsl --list --all
-# `Debian` should appear as one of the available Linux distributions.
-wsl --setdefault Debian
-``` 
 - Now try and open Docker. If your system is managed by some kind of Active Directory, you may have to do the following steps
   - Open computer management as admin (deutsch: Computerverwaltung)
   - Go to Local users and groups and find docker-users (deutsch: Lokale Benutzer und Gruppen)
   - Add your Account (or a group of which you are a member) to the group.
   - Restart your computer
-- In the Docker settings, select Debian as your WSL2 distribution as shown in the screenshot
+- In the Docker settings, select Ubuntu or a different Distro you may have installed as your WSL2 distribution as shown in the screenshot
  ![Docker preferences](.img/image.png)
-- If Debian doesn't show up activate WSL 2 in a shell
-```shell
-wsl --set-default-version 2 #(just to be sure that you didn't forgot this at the beginning)
-wsl --set-version Debian 2 #(converts debian to version 2)
-```
 - Now you should be good to go
   
 
@@ -52,10 +39,18 @@ wsl --set-version Debian 2 #(converts debian to version 2)
 - The following part now assumes that you want to use Ikarus as a developer
 - Pull the most recent docker container on a command line (Powershell, WSL, Debian)
 ```shell
-docker pull ikarusproject/ikarus-clang-dev:latest
+docker pull ikarusproject/ikarus-dev-clang:latest
 ```
 - Pull the Ikaurs GitHub [repository](https://github.com/ikarus-project/ikarus.git) into a local folder (this can be done via cmd or Gitkraken, etc)
 - Also, copy the folder `.devcontainer` from the folder `devcontainers/ikarus-clang/` into your local project folder
+- Copy the files `docker-compose.yml` into the project folder, so that it looks like that
+```
+- Project Folder
+  - ...
+  - docker-compose.yml
+  - .devcontainer
+    - devcontainer.json
+```
 - Now open the folder in VS Code, in the bottom there should be a message popping up, giving you the option to open the folder in a devcontainer 
 ![](.img/popup.png)
 - If not, press Strg-Shift-P type `reopen` in container` and hit enter when it appears
@@ -67,8 +62,8 @@ docker pull ikarusproject/ikarus-clang-dev:latest
 ###  Overview of projects, docker images, and compilers
 | Project           |              docker image               |              Compilers               |
 | :---------------- | :-------------------------------------: | :----------------------------------: |
-| ikarus (c++)      | `ikarusproject/ikarus-clang-dev:latest` | clang-16, clang-17, clang-18, gcc-12 |
-| ikarus (python)   |  `ikarusproject/ikarus-gcc-dev:latest`  |                gcc-12                |
+| ikarus (c++)      | `ikarusproject/ikarus-dev-clang:latest` | clang-16, clang-17, clang-18, gcc-12 |
+| ikarus (python)   |  `ikarusproject/ikarus-dev:latest`  |                gcc-12                |
 | dune-iga (c++)    | `ikarusproject/debianbase-clang:latest` | clang-16, clang-17, clang-18, gcc-12 |
 | dune-iga (python) |  `ikarusproject/debianbase-gcc:latest`  |                gcc-12                |
 
