@@ -14,13 +14,15 @@ For Linux many of the steps are the same, but of course, WSL is not needed, etc.
 - Download the following Apps
   - [VS Code](https://code.visualstudio.com/download)
   - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (this includes the docker engine)
-  - [Git](https://www.git-scm.com/download/win), if you want a UI, you can download [Gitkraken](https://www.gitkraken.com/download) (free for public repos) 
+  - [Git](https://www.git-scm.com/download/win), if you want a UI, you can download [Gitkraken](https://www.gitkraken.com/download) (free for public repos)
 - If the following steps produce an error, then maybe hardware virtualization has to be activated. Refer [here](https://docs.docker.com/desktop/troubleshoot/topics/#virtualization), maybe the option has to be turned on in the BIOS
 - Open the Windows Powershell (don't do this in Admin-Mode as suggested by Microsoft, you may have to elevate the shell after opening it normally)
+
 ```shell
 wsl --install
 wsl --set-default-version 2 #(Is not needed for Windows 11)
 ```
+
 - This should install WSL (Windows Subsystem for Linux)
 - Reboot if requested
 - Download and install Docker for Windows. During the installation, select the option "Install required Windows components for WSL 2"
@@ -33,17 +35,20 @@ wsl --set-default-version 2 #(Is not needed for Windows 11)
  ![Docker preferences](.img/image.png)
 - Now you should be good to go
   
-
 ## Use devcontainers as your development environment
-- Now the easy part, install VS Code 
+
+- Now the easy part, install VS Code
 - The following part now assumes that you want to use Ikarus as a developer
 - Pull the most recent docker container on a command line (Powershell, WSL, Debian)
+
 ```shell
 docker pull ikarusproject/ikarus-dev-clang:latest
 ```
+
 - Pull the Ikaurs GitHub [repository](https://github.com/ikarus-project/ikarus.git) into a local folder (this can be done via cmd or Gitkraken, etc)
-- Also, copy the folder `.devcontainer` from the folder `devcontainers/ikarus-clang/` into your local project folder
+- Also, copy the folder `.devcontainer` from the folder `devcontainers/ikarus/` into your local project folder
 - Copy the files `docker-compose.yml` into the project folder, so that it looks like that
+
 ```
 - Project Folder
   - ...
@@ -51,29 +56,29 @@ docker pull ikarusproject/ikarus-dev-clang:latest
   - .devcontainer
     - devcontainer.json
 ```
-- Now open the folder in VS Code, in the bottom there should be a message popping up, giving you the option to open the folder in a devcontainer 
+
+- Now open the folder in VS Code, in the bottom there should be a message popping up, giving you the option to open the folder in a devcontainer
 ![](.img/popup.png)
 - If not, press Strg-Shift-P type `reopen` in container` and hit enter when it appears
 - Now the Devcontainer should be built in the background, the first startup will take some time, so don't be impatient
 - When everything has settled, a prompt will ask you to specify the compiler you want to use and then cmake will configure (this can take some time and has to be done every time you open VS Code :/)
-- You can choose the compiler you want, I would suggest clang-18
+- You can choose the compiler you want, I would suggest clang-16
 - Via the cmake configure window you can specify the build and run target as sandbox to see if everything works
 
-###  Overview of projects, docker images, and compilers
-| Project           |              docker image               |              Compilers               |
-| :---------------- | :-------------------------------------: | :----------------------------------: |
-| ikarus (c++)      | `ikarusproject/ikarus-dev-clang:latest` | clang-16, clang-17, clang-18, gcc-12 |
-| ikarus (python)   |  `ikarusproject/ikarus-dev:latest`  |                gcc-12                |
-| dune-iga (c++)    | `ikarusproject/debianbase-clang:latest` | clang-16, clang-17, clang-18, gcc-12 |
-| dune-iga (python) |  `ikarusproject/debianbase-gcc:latest`  |                gcc-12                |
+### Overview of projects, docker images, and compilers
+
+| Project            |              docker image               |              Compilers               |
+| :----------------: | :-------------------------------------: | :----------------------------------: |
+| ikarus (developer) | `ikarusproject/ikarus-dev-clang:latest` | clang-16, clang-17, clang-18, gcc-12 |
+| ikarus (user)      | `ikarusproject/ikarus-clang:latest` | clang-16, clang-17, clang-18, gcc-12 |
 
 - Periodically run the pull commands to update the images, you can then rebuild your devcontainers via the VS Code command palette (Str-Shift-P)
 
 ### Explanation of the VS Code settings in the devconatiners
+
 - We favor using `clangd` as the language server over Microsoft's IntelliSense, it is preconfigured to work out-of-the-box
 - For formatting we use `clang-format` with the provided `.clang-format`The Python path is altered to use the dune Python binary which allows us to compile the Python bindings
-- Other than the last one, you can make any change to the settings and everything should still work 
-
+- Other than the last one, you can make any change to the settings and everything should still work
 
 ## Use Ikarus as a User (C++)
 
