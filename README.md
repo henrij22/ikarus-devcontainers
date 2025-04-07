@@ -10,7 +10,7 @@ For Linux many of the steps are the same, but of course, WSL is not needed, etc.
 
 ## Baseline prerequisites
 
-- We need some kind of new-ish system with Win10 or Win11, at least 16 GB RAM and a CPU that is not made out of wood (I would suggest at least 8 cores)
+- We need some kind of new-ish system with Win10 or Win11, at least 16 GB RAM and a CPU (I would suggest at least 6 cores)
 - Download the following Apps
   - [VS Code](https://code.visualstudio.com/download)
   - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (this includes the docker engine)
