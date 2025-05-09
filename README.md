@@ -14,7 +14,7 @@ For Linux many of the steps are the same, but of course, WSL is not needed, etc.
 - Download the following Apps
   - [VS Code](https://code.visualstudio.com/download)
   - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (this includes the docker engine)
-  - [Git](https://www.git-scm.com/download/win), if you want a UI, you can download [Gitkraken](https://www.gitkraken.com/download) (free for public repos)
+  - [Git](https://www.git-scm.com/download/win), if you want a UI, you can download [Gitkraken](https://www.gitkraken.com/download) (free for public repos) or  [Github Desktop](https://github.com/apps/desktop).
 - If the following steps produce an error, then maybe hardware virtualization has to be activated. Refer [here](https://docs.docker.com/desktop/troubleshoot/topics/#virtualization), maybe the option has to be turned on in the BIOS
 - Open the Windows Powershell (don't do this in Admin-Mode as suggested by Microsoft, you may have to elevate the shell after opening it normally)
 
@@ -25,13 +25,14 @@ wsl --set-default-version 2 #(Is not needed for Windows 11)
 
 - This should install WSL (Windows Subsystem for Linux)
 - Reboot if requested
-- Download and install Docker for Windows. During the installation, select the option "Install required Windows components for WSL 2"
+- Go to Microsoft store and install "[Debian](https://apps.microsoft.com/detail/9MSVKQC78PK6?hl=neutral&gl=DE&ocid=pdpshare)"
+- Download and install Docker Desktop for Windows. During the installation, select the option "Install required Windows components for WSL 2"
 - Now try and open Docker. If your system is managed by some kind of Active Directory, you may have to do the following steps
   - Open computer management as admin (deutsch: Computerverwaltung)
   - Go to Local users and groups and find docker-users (deutsch: Lokale Benutzer und Gruppen)
   - Add your Account (or a group of which you are a member) to the group.
   - Restart your computer
-- In the Docker settings, select Ubuntu or a different Distro you may have installed as your WSL2 distribution as shown in the screenshot
+- In the Docker settings, select Debian or a different Distro you may have installed as your WSL2 distribution as shown in the screenshot
  ![Docker preferences](.img/image.png)
 - Now you should be good to go
   
